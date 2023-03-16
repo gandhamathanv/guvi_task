@@ -1,0 +1,82 @@
+/* Reset default browser styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a background color */
+body {
+  background-color: #f2f2f2;
+}
+
+/* Center the form vertically and horizontally */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Style the form */
+.form {
+  width: 90%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Style the form fields */
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 3px;
+  background-color: #f2f2f2;
+}
+
+/* Style the form button */
+.form button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Style the form button on hover */
+.form button:hover {
+  background-color: #3e8e41;
+}
+
+/* Style the form button on focus */
+.form button:focus {
+  outline: none;
+}
+
+/* Style the form label */
+.form label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Add media queries for responsiveness */
+@media (min-width: 600px) {
+  .form {
+    width: 70%;
+  }
+}
+
+@media (min-width: 800px) {
+  .form {
+    width: 50%;
+  }
+}
