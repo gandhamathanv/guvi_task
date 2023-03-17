@@ -2,16 +2,14 @@
 const username = document.getElementById("username");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirm-password");
-
 const loginButtton = document.querySelector(".Login-button");
-
 const errorMessage = document.querySelector(".err");
 
 //SECTION-END: DOCUMENT QUERRY SELECTORS
 
 errorMessage.style.display = "none";
-// SECTION-START: FUNCTIONS
 
+// SECTION-START: FUNCTIONS
 const validateUserName = (value) => {
   if (value == "") return false;
   return true;
