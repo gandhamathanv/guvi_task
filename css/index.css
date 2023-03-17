@@ -1,78 +1,86 @@
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-}
-
-.logo a {
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: #fff;
-}
-
-.menu-icon {
-  display: none;
-  cursor: pointer;
-}
-
-.menu-icon span {
-  display: block;
-  height: 2px;
-  width: 25px;
-  margin: 5px;
-  background-color: #fff;
-}
-
-.menu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu ul {
-  display: flex;
-  list-style: none;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
-.menu li {
-  margin: 0 10px;
+body {
+  width: 100vw;
+  height: 100vh;
 }
-
-.menu a {
-  font-size: 1.1rem;
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 4rem;
+  padding: 10px 5rem;
+  background-color: azure;
+}
+.logo-container {
+  height: 100%;
+}
+.logo-container img {
+  height: 100%;
+  object-fit: contain;
+}
+nav .button-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.buttons {
   text-decoration: none;
+  text-decoration-line: none;
   color: #fff;
+  background-color: #0dba4b;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+header {
+  display: flex;
+  width: 100%;
+}
+.header-content-text {
+  width: 60%;
+  padding: 10rem;
+}
+.header-title {
+  font-size: 30px;
+}
+.card-container {
+  margin: 30px;
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  justify-content: space-evenly;
+}
+.card {
+  background: aliceblue;
+  width: 100%;
+  height: 10rem;
+  padding: 20px;
+  border-radius: 5px;
+}
+.card:hover {
+  transform: scale(1.05);
+  transition: 2s;
 }
 
-@media only screen and (max-width: 768px) {
-  .menu-icon {
-    display: block;
-  }
-  .menu {
-    display: none;
-    position: fixed;
-    top: 70px;
-    left: 0;
-    background-color: #333;
-    width: 100%;
-    padding: 10px 0;
-  }
-  .menu ul {
-    flex-direction: column;
-    align-items: center;
-  }
-  .menu li {
-    margin: 10px 0;
-  }
+.card-header {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.card-description {
+  font-size: 15px;
+  margin-top: 2px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.header-content-image {
+  width: 40%;
+}
+.image-container {
+  padding: 10rem;
+}
+.image-container img {
+  width: 100%;
 }

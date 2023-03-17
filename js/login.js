@@ -1,4 +1,5 @@
 //SECTION-START: DOCUMENT QUERRY SELECTORS
+const error = document.querySelector(".err");
 
 const username = document.getElementById("username");
 const password = document.getElementById("password");
@@ -6,6 +7,8 @@ const loginButton = document.querySelector(".Login-button");
 const errorMessage = document.querySelector(".err");
 
 //SECTION-END: DOCUMENT QUERRY SELECTORS
+
+errorMessage.style.display = "none";
 
 const LoginUser = (username, password) => {
   var data = {
@@ -19,15 +22,16 @@ const LoginUser = (username, password) => {
     success: (response) => {
       // Handle the response from the server
       console.log("Response:", response);
-      const { status, message, data, encode } = response;
+      const { status, message, data, session_id } = response;
       if (status) {
         localStorage.setItem("isLogin", true);
-        localStorage.setItem("token", encode);
+        localStorage.setItem("session_id", session_id);
+        localStorage.setItem("username", data.username);
         window.location.href = "/profile.html";
       } else {
         errorMessage.innerHTML = "error";
       }
-      console.log(localStorage.getItem(JSON.parse(data)));
+      // console.log(localStorage.getItem(JSON.parse(data)));
     },
     error: (jqXHR, textStatus, errorThrown) => {
       console.error("Error:", textStatus, errorThrown);

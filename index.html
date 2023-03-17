@@ -5,35 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/index.css" />
+    <script src="./js/index.js" defer></script>
     <title>Guvi</title>
   </head>
   <body>
     <nav>
-      <div class="logo">
-        <a href="#">Logo</a>
+      <div class="logo-container">
+        <img src="./assets/guvi-logo-new.png" alt="guvi" />
       </div>
-      <div class="menu-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="menu">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
+      <div class="button-container">
+        <a href="./login.html">
+          <div class="buttons">Login</div>
+        </a>
+        <a href="./login.html">
+          <div class="buttons">SignUp</div>
+        </a>
       </div>
     </nav>
-
-    <section>
-      <div class="login">
-        <a href="./login.html" class="login-screen">Login</a>
+    <header>
+      <div class="header-content-text">
+        <section class="header-title">What we Offer?</section>
+        <div class="card-container">
+          <div class="card" id="login-card">
+            <div class="card-header">Login</div>
+            <div class="card-description">To login to our community</div>
+          </div>
+          <div class="card" id="signup-card">
+            <div class="card-header">Register</div>
+            <div class="card-description">To Join our Community</div>
+          </div>
+        </div>
       </div>
-      <div class="signup">
-        <a href="./register.html" class="signup-screen">Signup</a>
+      <div class="header-content-image">
+        <div class="image-container">
+          <img src="./assets/women.webp" alt="" />
+        </div>
       </div>
-    </section>
+    </header>
   </body>
 </html>

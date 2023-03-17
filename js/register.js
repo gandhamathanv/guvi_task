@@ -5,8 +5,11 @@ const confirmPassword = document.getElementById("confirm-password");
 
 const loginButtton = document.querySelector(".Login-button");
 
-//SECTION-END: DOCUMENT SELECTORS
+const errorMessage = document.querySelector(".err");
 
+//SECTION-END: DOCUMENT QUERRY SELECTORS
+
+errorMessage.style.display = "none";
 // SECTION-START: FUNCTIONS
 
 const validateUserName = (value) => {
@@ -33,6 +36,7 @@ const registerUser = (username, password) => {
     success: function (response) {
       // Handle the response from the server
       console.log("Response:", response);
+      window.location.href = "../login.html";
     },
     error: function (jqXHR, textStatus, errorThrown) {
       // Handle any errors that occurred during the request

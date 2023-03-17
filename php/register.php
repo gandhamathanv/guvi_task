@@ -23,6 +23,18 @@ if (!mysqli_stmt_execute($insertStmt)) {
   die("Execution failed: " . mysqli_stmt_error($insertStmt));
 }
 else{
+  echo "sdsd";
+  // $session_id = uniqid();
+        // $redis->set("session:$session_id", $username);
+        // $redis->expire("session:$session_id", 1000 * 60);
+        // $response = array(
+        //     'status' => true,
+        //     'message' => 'Success',
+        //     'session_id' => $session_id,
+        //     'data' => array(
+        //         'username' => $username, 'password' => $password, 'mongoDbId' => $mongoDbId,
+        //     ),
+        // );
     
 }
 // // Close the statement and connection
