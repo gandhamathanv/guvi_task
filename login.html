@@ -20,48 +20,61 @@
     />
     <script src="./js/login.js" defer></script>
     <link rel="stylesheet" href="./css/login.css" />
+    <link rel="stylesheet" href="./css/loading.css" />
   </head>
   <body>
     <!-- partial:index.partial.html -->
-    <div class="box-form">
-      <div class="left">
-        <div class="overlay">
-          <h1>Hello World.</h1>
+    <div id="content">
+      <div class="box-form">
+        <div class="left">
+          <div class="overlay">
+            <h1>Hello World.</h1>
+          </div>
         </div>
-      </div>
 
-      <div class="right">
-        <h5>Login</h5>
-        <p>
-          Don't have an account?
-          <a href="/register.html">Creat Your Account</a> it takes less than a
-          minute
-        </p>
-        <div class="inputs">
-          <input
-            type="text"
-            id="username"
-            name="username"
-            required
-            placeholder="user name"
-          />
+        <div class="right">
+          <h5>Login</h5>
+          <p>
+            Don't have an account?
+            <a href="/register.html">Creat Your Account</a> it takes less than a
+            minute
+          </p>
+          <div class="inputs">
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              placeholder="user name"
+            />
+            <br />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="password"
+            />
+          </div>
+
           <br />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            placeholder="password"
-          />
+          <div class="err">messange</div>
+          <br />
+          <br />
+          <button class="Login-button">Login</button>
         </div>
-
-        <br />
-        <div class="err">messange</div>
-        <br />
-        <br />
-        <button class="Login-button">Login</button>
       </div>
     </div>
     <!-- partial -->
+    <!-- LOADING -->
+    <div id="loader" class="Hidden Loading-Container">
+      <div class="container">
+        <div class="yellow"></div>
+        <div class="red"></div>
+        <div class="blue"></div>
+        <div class="violet"></div>
+      </div>
+    </div>
+    <!-- LOADING END -->
   </body>
 </html>

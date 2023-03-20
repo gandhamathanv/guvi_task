@@ -3,74 +3,45 @@ include "./services/MongoDBConnection.php";
 include "./services/response.php";
 include "./services/RedisConnection.php";
 
+function getUserDetails($mongodbId){
+    global $mongo,$mongodbDatabase,$mongodbCollection;
+    $_id=new MongoDB\BSON\ObjectID($mongodbId); 
+    $filter = ['_id' => $_id];
 
+    $options = [];
 
-$redisId = $_GET['redisID'];
+    $query = new MongoDB\Driver\Query($filter, $options);
 
-$username = $redis->get("session:$redisId");
+    $cursor = $mongo->executeQuery("$mongodbDatabase.$mongodbCollection", $query);
 
-$filter = ['username' => $username];
+    $document = current($cursor->toArray());
 
-$options = [];
-
-$query = new MongoDB\Driver\Query($filter, $options);
-
-$cursor = $mongo->executeQuery("$mongodb_database.$mongodb_collection", $query);
-
-$document = current($cursor->toArray());
-$response = array(
-    'status' => true,
-    'newUser' => false,
-    'userDetails' => $document,
-    'username' => $username,
-
-);
-
-if ($document) {
-sendRespose(200, $response);
-}else {
-    sendRespose(200, array(
-        'status' => false,
-        'message' => 'No documentation',
-    ));
+    return $document;
+    // sendRespose(200,$document);
 }
 
-// if ($data->mongoDbId) {
+if(!isset($_GET['redisID'])){
+    $response=array("status"=>false,"message"=>"Redis ID Not Found");
+}
+$redisId = $_GET['redisID'];
+$sessionDetails =json_decode($redis->get("session:$redisId"));
+if(!$sessionDetails){
+    $response= array(
+        'status' => false,
+        'message' => 'Invalid Session ID',
+    );
+    sendRespose(200,$response);
 
-//     $id = new MongoDB\BSON\ObjectID($data->mongoDbId); // ID object
-//     $filter = ['_id' => $id];
-//     $options = ['limit' => 1];
-
-//     $query = new MongoDB\Driver\Query($filter, $options);
-
-//     $cursor = $mongo->executeQuery("$mongodb_database.$mongodb_collection", $query);
-
-//     $document = current($cursor->toArray());
-//     $response = array(
-//         'status' => true,
-//         'newUser' => false,
-//         'userDetails' => $document,
-//         'username' => $data->username,
-
-//     );
-//     if ($document) {
-//         sendRespose(200, $response);
-//     } else {
-
-//         sendRespose(200, array(
-//             'status' => false,
-//             'message' => 'No documentation',
-//         ));
-//     }
-
-//     sendRespose(200, $data);
-// } else {
-//     $response = array(
-//         'status' => true,
-//         'newUser' => true,
-//         'username' => $data->username,
-//     );
-//     sendRespose(200, $response);
-// }
-// // echo $data->username;
-?>
+}
+// sendRespose(200,$sessionDetails);
+if(isset($_GET["action"]) && $_GET["action"]=="getUserDetails"){
+    $response=array("status"=>true ,"userDetails" => $sessionDetails->userDetails);
+    sendRespose(200,$response);
+}else if(isset($_GET["action"]) && $_GET["action"]=="logout"){
+    $redis->del("session:$redisId");
+    $response = array(
+        "status" => true,
+        "message" => "Logout successful",
+    );
+    sendResponse($response);    
+}

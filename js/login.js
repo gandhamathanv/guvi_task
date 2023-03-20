@@ -1,5 +1,7 @@
 //SECTION-START: DOCUMENT QUERRY SELECTORS
 const error = document.querySelector(".err");
+const Loading = document.getElementById("loader");
+const Content = document.getElementById("content");
 
 const username = document.getElementById("username");
 const password = document.getElementById("password");
@@ -9,12 +11,23 @@ const errorMessage = document.querySelector(".err");
 //SECTION-END: DOCUMENT QUERRY SELECTORS
 
 errorMessage.style.display = "none";
+const showLoader = (loader) => {
+  if (loader) {
+    Content.classList.add("Hidden");
+    Loading.classList.remove("Hidden");
+  } else {
+    Loading.classList.add("Hidden");
+    Content.classList.remove("Hidden");
+  }
+};
 
 const LoginUser = (username, password) => {
   var data = {
     username,
     password,
   };
+  console.log("asdsd");
+
   $.ajax({
     url: "/php/login.php",
     method: "POST",
@@ -29,12 +42,15 @@ const LoginUser = (username, password) => {
         localStorage.setItem("username", data.username);
         window.location.href = "/profile.html";
       } else {
-        errorMessage.innerHTML = "error";
+        errorMessage.innerHTML = response.message;
+        errorMessage.style.display = "flex";
       }
+      showLoader(false);
       // console.log(localStorage.getItem(JSON.parse(data)));
     },
     error: (jqXHR, textStatus, errorThrown) => {
       console.error("Error:", textStatus, errorThrown);
+      showLoader(false);
     },
   });
 };
@@ -43,9 +59,12 @@ const LoginUser = (username, password) => {
 
 loginButton.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log("login button");
+
   const usernameValue = username.value;
   const passwordValue = password.value;
+  showLoader(true);
   LoginUser(usernameValue, passwordValue);
+
+  console.log("hlo");
 });
 //SECTION-END: EVENT LISTITONERS

@@ -5,42 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/loading.css" />
     <script src="./js/index.js" defer></script>
     <title>Guvi</title>
   </head>
   <body>
-    <nav>
-      <div class="logo-container">
-        <img src="./assets/guvi-logo-new.png" alt="guvi" />
-      </div>
-      <div class="button-container">
-        <a href="./login.html">
-          <div class="buttons">Login</div>
-        </a>
-        <a href="./login.html">
-          <div class="buttons">SignUp</div>
-        </a>
-      </div>
-    </nav>
-    <header>
-      <div class="header-content-text">
-        <section class="header-title">What we Offer?</section>
-        <div class="card-container">
-          <div class="card" id="login-card">
-            <div class="card-header">Login</div>
-            <div class="card-description">To login to our community</div>
+    <div id="content" class="Header">
+      <div class="Header-background"></div>
+      <div class="Header-content">
+        <div class="Header-hero">
+          <h1>
+            The best app you've <br />
+            ever seen
+          </h1>
+          <p>You'll be blown away with all it does</p>
+          <div class="buttons">
+            <button
+              class="Button"
+              onclick="window.location.href='./register.html'"
+            >
+              Sign up
+            </button>
+            <button
+              class="Button"
+              onclick="window.location.href='./login.html'"
+            >
+              login
+            </button>
           </div>
-          <div class="card" id="signup-card">
-            <div class="card-header">Register</div>
-            <div class="card-description">To Join our Community</div>
+        </div>
+        <div class="Header-visuals">
+          <div class="Iphone">
+            <img src="./assets/logo.png" alt="logo" />
           </div>
         </div>
       </div>
-      <div class="header-content-image">
-        <div class="image-container">
-          <img src="./assets/women.webp" alt="" />
-        </div>
+    </div>
+    <!-- LOADING -->
+    <div id="loader" class="Hidden Loading-Container">
+      <div class="container">
+        <div class="yellow"></div>
+        <div class="red"></div>
+        <div class="blue"></div>
+        <div class="violet"></div>
       </div>
-    </header>
+    </div>
+    <!-- LOADING END -->
   </body>
 </html>

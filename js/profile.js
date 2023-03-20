@@ -1,3 +1,15 @@
+const Loading = document.getElementById("loader");
+const Content = document.getElementById("content");
+
+const showLoader = (loader) => {
+  if (loader) {
+    Content.classList.add("Hidden");
+    Loading.classList.remove("Hidden");
+  } else {
+    Loading.classList.add("Hidden");
+    Content.classList.remove("Hidden");
+  }
+};
 const Storage = {};
 //SECTION-START: QUERRY SELECTORS
 
@@ -14,20 +26,28 @@ const updateButton = document.querySelector(".update-button");
 //SECTION-START: AJAX CALL
 
 const UpdateUserDetails = (data) => {
+  data.action = "update";
+  data.redisID = localStorage.getItem("session_id");
+  console.log(data);
+  showLoader(true);
   $.ajax({
-    url: "/php/update.php",
+    url: "/php/register.php",
     method: "POST",
     data: data,
     success: (response) => {
       console.log("Response:", response);
       Storage.newUser = false;
+      showLoader(false);
     },
     error: (jqXHR, textStatus, errorThrown) => {
       console.error("Error:", textStatus, errorThrown);
+      showLoader(false);
     },
   });
 };
 const GetUserDetails = (data) => {
+  data.action = "getUserDetails";
+  console.log(data);
   $.ajax({
     url: "/php/profile.php",
     method: "GET",
@@ -59,6 +79,7 @@ const GetUserDetails = (data) => {
         Storage.username = localStorage.getItem("username");
       }
       updateUI();
+      showLoader(false);
       return;
       Storage.newUser = newUser;
       Storage.username = username;
@@ -77,7 +98,9 @@ const GetUserDetails = (data) => {
       updateUI();
     },
     error: (jqXHR, textStatus, errorThrown) => {
+      console.log("err");
       console.error("Error:", textStatus, errorThrown);
+      showLoader(false);
     },
   });
 };
@@ -122,6 +145,7 @@ window.addEventListener("load", () => {
   if (isLogin) {
     const data = localStorage.getItem("session_id");
     console.log(data);
+    showLoader(true);
     GetUserDetails({ redisID: data });
   } else {
     // alert("login to continue");
@@ -138,6 +162,7 @@ updateButton.addEventListener("click", (e) => {
     isSaved: Storage.newUser,
     username: Storage.username,
   });
+  showLoader(true);
   UpdateUserDetails({
     details: getterValue(),
     isSaved: Storage.newUser,

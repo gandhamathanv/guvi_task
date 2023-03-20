@@ -6,5 +6,4 @@ function sendRespose($statuscode,$response){
     
     die($json_response);
 }
-
 ?>
