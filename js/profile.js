@@ -48,6 +48,7 @@ const UpdateUserDetails = (data) => {
 const GetUserDetails = (data) => {
   data.action = "getUserDetails";
   console.log(data);
+  // ASYNC JAVASCRIPT and XML
   $.ajax({
     url: "/php/profile.php",
     method: "GET",
@@ -56,8 +57,12 @@ const GetUserDetails = (data) => {
       console.log("here");
       console.log(response);
 
-      const { status } = response;
+      const { status, message } = response;
       if (!status) {
+        alert(message);
+        localStorage.removeItem("session_id");
+        window.location.href = "/login.html";
+
         setterValue(null, null, null, null);
         Storage.newUser = true;
         Storage.username = localStorage.getItem("username");
