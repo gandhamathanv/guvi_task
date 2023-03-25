@@ -2,6 +2,10 @@
 
 This is a simple login/signup application with an edit form, built using PHP. The application uses MySQL, MongoDB, and Redis for data storage.
 
+## Hosted Link
+
+- [AWS](http://34.205.84.110/)
+
 ## Reference
 
 - [PHP](https://www.php.net/docs.php)
