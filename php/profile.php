@@ -43,5 +43,5 @@ if(isset($_GET["action"]) && $_GET["action"]=="getUserDetails"){
         "status" => true,
         "message" => "Logout successful",
     );
-    sendResponse($response);    
+    sendRespose(200,$response);    
 }

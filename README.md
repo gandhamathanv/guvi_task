@@ -152,6 +152,7 @@ If you have any feedback, please reach out to us at gandhamathanv.20cse@kongu.ed
 
 ## Screenshots
 
+![INDEX](./screenshots/1.png)
 ![REGISTER](./screenshots/4.png)
 ![LOGIN](./screenshots/2.png)
 ![PROFILE](./screenshots/3.png)

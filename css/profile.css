@@ -1,10 +1,14 @@
-/* @media (max-width: 58rem) {
-  .row {
-    background-color: aqua;
-  }
+@media (max-width: 767px) {
 }
-@media (min-width: 58rem) {
-  .row {
-    background-color: white;
-  }
-} */
+.row {
+  background-color: floralwhite !important;
+  flex-direction: column !important;
+  align-items: center;
+}
+
+body {
+  background-color: beige;
+}
+input:disabled {
+  background-color: none !important;
+}
