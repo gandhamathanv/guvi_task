@@ -1,20 +1,7 @@
+//SECTION-START: QUERRY SELECTORS
 const Loading = document.getElementById("loader");
 const Content = document.getElementById("content");
-
-const showLoader = (loader) => {
-  if (loader) {
-    Content.classList.add("Hidden");
-    Loading.classList.remove("Hidden");
-  } else {
-    Loading.classList.add("Hidden");
-    Content.classList.remove("Hidden");
-  }
-};
-const Storage = {};
-//SECTION-START: QUERRY SELECTORS
-
 const DisplayUsername = document.getElementById("username");
-
 const currentUserSelector = document.getElementById("current-user-name");
 const UserGivenName = document.getElementById("user-given-name");
 const UserPhoneNumber = document.getElementById("user-phone-number");
@@ -25,32 +12,58 @@ const updateButton = document.querySelector(".update-button");
 const logoutButton = document.querySelector("#logout-btn");
 //SECTION-END: QUERRY SELECTORS
 
+//SECTION-START: BASIC FUNCTION
+// LOADER SETTER FUNCTION TO VIEW AND HIDE
+const showLoader = (loader) => {
+  if (loader) {
+    Content.classList.add("Hidden");
+    Loading.classList.remove("Hidden");
+  } else {
+    Loading.classList.add("Hidden");
+    Content.classList.remove("Hidden");
+  }
+};
+//SECTION-START: BASIC FUNCTION
+
+// KEEPING THE VALUE IN IN MEMORU FOR RENDERING PURPOSE
+const Storage = {};
+
 //SECTION-START: AJAX CALL
 
+// UPDATE USER DETAILS AJAX FUNCTION
 const UpdateUserDetails = (data) => {
+  // SET ACTION TO UPDATE TO SAY THE FUNCTION TO RUN WHICH FUNCTION
   data.action = "update";
+  // GETTING REDIS SESSION ID FROM THE LOCALSTORAGE
   data.redisID = localStorage.getItem("session_id");
-  console.log(data);
+  // SETTING LODER TO TRUE BEFRORE CALL
   showLoader(true);
+  // AJAX CALL TO UPDATE
+  // URL : {{BASE_URL}}/php/register.php
+  // METHOD : POST
   $.ajax({
     url: "/php/register.php",
     method: "POST",
     data: data,
     success: (response) => {
-      console.log("Response:", response);
+      // SETTING STORAGE TO FALSE FOR NEW USER BECAUSE THE BECASE THE USER IS UPDATEED
       Storage.newUser = false;
+      // SETTING LOADER TO FALSE
       showLoader(false);
     },
     error: (jqXHR, textStatus, errorThrown) => {
+      // IF THERE IS A ERROR IN THE SERVER (IE) INTERNAL SERVER SUCH AS 400(BAD REQUEST),401(UNAUTHORIZED),403(FORBIDDEN),404(PAGE NOT FOUND),500(INTERNAL SERVER ERROR)
       console.error("Error:", textStatus, errorThrown);
       showLoader(false);
     },
   });
 };
 const GetUserDetails = (data) => {
+  // SET ACTION TO GETUSERDETAILS TO SAY THE FUNCTION TO RUN WHICH FUNCTION IN SERVER
   data.action = "getUserDetails";
-  console.log(data);
-  // ASYNC JAVASCRIPT and XML
+  // AJAX CALL TO GETUSERDETAILS
+  // URL : {{BASE_URL}}/php/profile.php
+  // METHOD : GET
   $.ajax({
     url: "/php/profile.php",
     method: "GET",
@@ -100,24 +113,9 @@ const GetUserDetails = (data) => {
       updateUI();
       showLoader(false);
       return;
-      Storage.newUser = newUser;
-      Storage.username = username;
-      if (
-        newUser == undefined &&
-        username == undefined &&
-        userDetails == undefined
-      ) {
-        Storage.newUser = true;
-        Storage.username = localStorage.getItem("username");
-      }
-      if (!newUser) {
-        Storage.userDetails = response.userDetails;
-      }
-      console.log(Storage);
-      updateUI();
     },
     error: (jqXHR, textStatus, errorThrown) => {
-      console.log("err");
+      // IF THERE IS A ERROR IN THE SERVER (IE) INTERNAL SERVER SUCH AS 400(BAD REQUEST),401(UNAUTHORIZED),403(FORBIDDEN),404(PAGE NOT FOUND),500(INTERNAL SERVER ERROR)
       console.error("Error:", textStatus, errorThrown);
       showLoader(false);
     },

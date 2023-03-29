@@ -26,6 +26,7 @@ if(!isset($_GET['redisID'])){
 $redisId = $_GET['redisID'];
 $sessionDetails =json_decode($redis->get("session:$redisId"));
 if(!$sessionDetails){
+    // CACHE MISS
     $response= array(
         'status' => false,
         'message' => 'Invalid Session ID',

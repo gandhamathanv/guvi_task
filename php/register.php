@@ -21,7 +21,6 @@ function getUserDetails($mongodbId){
   return $document;
   // sendRespose(200,$document);
 }
-
 function CreateUser($username, $password,$insertStmt,$data){
 
   global $mongo,$mongodbCollection,$mongodbDatabase,$redis;
@@ -41,6 +40,7 @@ function CreateUser($username, $password,$insertStmt,$data){
     die("Execution failed: " . mysqli_stmt_error($insertStmt));
   }
   else{
+    // CACHE HIT
     // REDIS SESSIONS
     // REDIS SESSION ID AND TIME
     $session_id = uniqid();
